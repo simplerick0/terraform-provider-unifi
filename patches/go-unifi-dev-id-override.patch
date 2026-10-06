@@ -1,0 +1,22 @@
+diff --git a/unifi/user.generated.go b/unifi/user.generated.go
+index c96960a..c7fa6b8 100644
+--- a/unifi/user.generated.go
++++ b/unifi/user.generated.go
+@@ -52,7 +52,8 @@ func (dst *User) UnmarshalJSON(b []byte) error {
+ 	aux := &struct {
+ 		*Alias
+ 
+-		LastSeen emptyStringInt `json:"last_seen"`
++		LastSeen      emptyStringInt `json:"last_seen"`
++		DevIdOverride emptyStringInt `json:"dev_id_override"`
+ 	}{
+ 		Alias: (*Alias)(dst),
+ 	}
+@@ -62,6 +63,7 @@ func (dst *User) UnmarshalJSON(b []byte) error {
+ 		return fmt.Errorf("unable to unmarshal alias: %w", err)
+ 	}
+ 	dst.LastSeen = int(aux.LastSeen)
++	dst.DevIdOverride = int(aux.DevIdOverride)
+ 
+ 	return nil
+ }
